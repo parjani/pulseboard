@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PulseBoard — Startup Feedback Board
+
+PulseBoard is a responsive full-stack feedback board where users can submit product ideas, report bugs, and suggest improvements. A team view helps track feedback through New, Planned, and Done statuses.
+
+## Features
+
+- Submit feedback with a title, description, and category.
+- Display feedback with the newest submissions first.
+- Search and filter feedback.
+- Update feedback statuses from the team view.
+- Validate submissions and provide loading, success, empty, and error states.
+- Responsive interface with animations.
+
+## Technology Stack
+
+- **Next.js App Router and TypeScript** — application structure, routing, and API endpoints.
+- **Tailwind CSS** — responsive styling.
+- **MongoDB Atlas** — persistent feedback storage.
+- **Framer Motion** — UI animations.
+- **Lucide React** — interface icons.
+- **Vercel** — deployment and hosting.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js and npm
+- A MongoDB Atlas database
+- Git
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/parjani/pulseboard.git
+cd pulseboard
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```dotenv
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB=pulseboard
+```
+
+Replace the placeholder with your MongoDB Atlas connection string. Never commit credentials or `.env.local` to Git.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To verify a production build, run:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+- `app/` contains the application pages and API routes.
+- `app/api/feedback/` handles feedback retrieval and creation.
+- `app/api/feedback/[id]/` handles status updates.
+- `components/` contains reusable UI components.
+- `lib/mongodb.ts` manages the MongoDB connection.
+- MongoDB Atlas stores feedback persistently.
+- Vercel hosts the deployed application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application is deployed using Vercel. Configure `MONGODB_URI` and `MONGODB_DB` in the project's environment variables before deployment.
 
-## Deploy on Vercel
+## Known Limitations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The team view does not currently have authentication, so it should not be used for confidential or sensitive data.
+- The application is a mini-project and does not include a full user-management or role-based access-control system.
+- Production database availability depends on correct MongoDB credentials and network configuration.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## AI Tools and Code Review
+
+ChatGPT was used as a development assistant for implementation guidance, UI improvements, debugging, and documentation. The resulting code should be reviewed, built, and tested before submission. See the accompanying AI tools note for the verification performed.
+
+## License
+
+Created as a candidate coding assessment project.
